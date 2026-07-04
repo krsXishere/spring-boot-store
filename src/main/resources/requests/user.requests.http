@@ -1,0 +1,25 @@
+### GET request to example server
+GET http://localhost:8080/
+
+###
+GET http://localhost:8080/users
+
+###
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "secret123"
+}
+
+###
+PUT http://localhost:8080/users/d07e1443-496d-4f42-a51d-6998d61ba353
+Content-Type: application/json
+
+{
+  "name": "Doe John",
+  "email": "doe@example.com",
+  "password": "secret321"
+}
