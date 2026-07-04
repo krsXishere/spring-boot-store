@@ -1,8 +1,7 @@
-### GET request to example server
-GET http://localhost:8080/
-
 ###
 GET http://localhost:8080/users
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMTc0NzAyLCJleHAiOjE3ODMxNzgzMDJ9.AcvwsjSvm9cLLmefF-ZPp-L8M-qQ5lUmesEX2uUQMIA"
 
 ###
 POST http://localhost:8080/users

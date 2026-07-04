@@ -17,4 +17,9 @@ public class AuthController {
     public AuthDto.SignInResponse signIn(@RequestBody AuthDto.SignInRequest signInRequest) {
         return authService.signIn(signInRequest);
     }
+
+    @PostMapping("/sign-up")
+    public AuthDto.SignUpResponse signUp(@RequestBody AuthDto.SignUpRequest signUpRequest) {
+        return authService.signUp(signUpRequest);
+    }
 }

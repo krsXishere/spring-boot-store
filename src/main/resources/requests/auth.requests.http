@@ -1,8 +1,27 @@
-###
+### Sign In
 POST http://localhost:8080/auth/sign-in
 Content-Type: application/json
 
 {
   "email": "john@example.com",
+  "password": "secret123"
+}
+
+### Sign In
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "email": "ikis@example.com",
+  "password": "secret123"
+}
+
+### Sign Up
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "name": "Krisna Purnama",
+  "email": "ikis@example.com",
   "password": "secret123"
 }
