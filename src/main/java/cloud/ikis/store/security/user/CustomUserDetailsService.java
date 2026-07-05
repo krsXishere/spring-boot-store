@@ -1,6 +1,6 @@
 package cloud.ikis.store.security.user;
 
-import cloud.ikis.store.models.User;
+import cloud.ikis.store.entities.User;
 import cloud.ikis.store.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,10 +1,12 @@
 package cloud.ikis.store.services;
 
 import cloud.ikis.store.dtos.UserDto;
-import cloud.ikis.store.models.User;
+import cloud.ikis.store.entities.User;
 import cloud.ikis.store.repositories.UserRepository;
 import cloud.ikis.store.security.password.PasswordService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Instant;
 import java.util.List;
@@ -26,7 +28,7 @@ public class UserService {
 
     public User create(UserDto userDto) {
         if (userRepository.existsByEmail(userDto.getEmail())) {
-            throw new IllegalArgumentException("Email already exist");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exist");
         }
 
         String hashedPassword = passwordService.hash(userDto.getPassword());
@@ -41,22 +43,42 @@ public class UserService {
     }
 
     public User update(String id, UserDto userDto) {
-        String hashedPassword = passwordService.hash(userDto.getPassword());
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+        User user = findUserById(id);
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        user.setPassword(hashedPassword);
+        if (userDto.getPassword() != null) {
+            String hashedPassword = passwordService.hash(userDto.getPassword());
+            user.setPassword(hashedPassword);
+        }
+        user.setUpdatedAt(Instant.now());
 
         return userRepository.save(user);
     }
 
     public User updatePatch(String id, UserDto userDto) {
-        String hashedPassword = passwordService.hash(userDto.getPassword());
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+        User user = findUserById(id);
         if (userDto.getName() != null) user.setName(userDto.getName());
         if (userDto.getEmail() != null) user.setEmail(userDto.getEmail());
-        if (userDto.getPassword() != null) user.setPassword(hashedPassword);
+        if (userDto.getPassword() != null) {
+            String hashedPassword = passwordService.hash(userDto.getPassword());
+            user.setPassword(hashedPassword);
+        }
+        user.setUpdatedAt(Instant.now());
 
         return userRepository.save(user);
+    }
+
+    public boolean softDelete(String id) {
+        User user = findUserById(id);
+        user.setDeletedAt(Instant.now());
+        userRepository.save(user);
+
+        return user.getDeletedAt() != null;
+    }
+
+    private User findUserById(String id) {
+        UUID uuid = UUID.fromString(id);
+        return userRepository.findById(uuid)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 }

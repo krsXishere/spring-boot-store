@@ -1,7 +1,7 @@
 package cloud.ikis.store.services;
 
 import cloud.ikis.store.dtos.AuthDto;
-import cloud.ikis.store.models.User;
+import cloud.ikis.store.entities.User;
 import cloud.ikis.store.repositories.UserRepository;
 import cloud.ikis.store.security.jwt.JwtService;
 import cloud.ikis.store.security.password.PasswordService;

@@ -1,24 +1,31 @@
 ###
 GET http://localhost:8080/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMTc2ODI3LCJleHAiOjE3ODMxODA0Mjd9.DqiE9v39-4fBazCsMGbxg2vR_V9EymPeind1dzk9mmE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMjQ2MTk5LCJleHAiOjE3ODMyNDk3OTl9.znwD0npboouDkYr48EKY2B5iu1FBm2AUO04gpH-X20A
 
 ###
 POST http://localhost:8080/users
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMjQ2MTk5LCJleHAiOjE3ODMyNDk3OTl9.znwD0npboouDkYr48EKY2B5iu1FBm2AUO04gpH-X20A
 
 {
-  "name": "John Doe",
-  "email": "john@example.com",
+  "name": "Rizki Triana",
+  "email": "iki@example.com",
   "password": "secret123"
 }
 
 ###
-PUT http://localhost:8080/users/d07e1443-496d-4f42-a51d-6998d61ba353
+PUT http://localhost:8080/users/dbb85b9c-8ca1-495d-98cd-dd3fce6575c3
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMjQ2MTk5LCJleHAiOjE3ODMyNDk3OTl9.znwD0npboouDkYr48EKY2B5iu1FBm2AUO04gpH-X20A
 
 {
   "name": "Doe John",
-  "email": "doe@example.com",
+  "email": "doe2@example.com",
   "password": "secret321"
 }
+
+###
+PATCH http://localhost:8080/users/delete/b649d455-3902-4241-a4b5-79bc7bfefadf
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMjQ5OTc3LCJleHAiOjE3ODMyNTM1Nzd9.kg-giPEPD3EY91lICJjq-28I87Oys7jM-0EWgj5Vp_Q

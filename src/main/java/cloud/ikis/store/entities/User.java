@@ -1,8 +1,9 @@
-package cloud.ikis.store.models;
+package cloud.ikis.store.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
+@SQLRestriction("deleted_at IS NULL")
 public class User {
     @Id
     private UUID id;
