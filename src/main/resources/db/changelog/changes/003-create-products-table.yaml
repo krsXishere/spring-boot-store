@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-products-table
+      author: ikis
+
+      changes:
+        - createTable:
+            tableName: products
+
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: varchar(255)
+
+              - column:
+                  name: description
+                  type: text
+
+              - column:
+                  name: price
+                  type: decimal(15, 2)
+
+              - column:
+                  name: stock
+                  type: int
+
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: timestamp with time zone
+
+      rollback:
+        - dropTable:
+            tableName: products

@@ -1,5 +1,6 @@
 package cloud.ikis.store.controllers;
 
+import cloud.ikis.store.dtos.ResponseDto;
 import cloud.ikis.store.dtos.UserDto;
 import cloud.ikis.store.entities.User;
 import cloud.ikis.store.services.UserService;
@@ -18,31 +19,27 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public ResponseDto.response getAllUsers() {
         return userService.findAll();
     }
 
     @PostMapping
-    public User createUser(@RequestBody UserDto userDto) {
+    public ResponseDto.response createUser(@RequestBody UserDto userDto) {
         return userService.create(userDto);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable String id, @RequestBody UserDto userDto) {
+    public ResponseDto.response updateUser(@PathVariable String id, @RequestBody UserDto userDto) {
         return userService.update(id, userDto);
     }
 
     @PatchMapping("/{id}")
-    public User updatePatchUser(@PathVariable String id, @RequestBody UserDto userDto) {
+    public ResponseDto.response updatePatchUser(@PathVariable String id, @RequestBody UserDto userDto) {
         return userService.updatePatch(id, userDto);
     }
 
     @PatchMapping("delete/{id}")
-    public HttpStatus softDeleteUser(@PathVariable String id) {
-        if (userService.softDelete(id)) {
-            return HttpStatus.OK;
-        }
-
-        return HttpStatus.BAD_REQUEST;
+    public ResponseDto.response softDeleteUser(@PathVariable String id) {
+        return userService.softDelete(id);
     }
 }

@@ -1,5 +1,6 @@
 package cloud.ikis.store.services;
 
+import cloud.ikis.store.dtos.ResponseDto;
 import cloud.ikis.store.dtos.UserDto;
 import cloud.ikis.store.entities.User;
 import cloud.ikis.store.repositories.UserRepository;
@@ -22,11 +23,11 @@ public class UserService {
         this.passwordService = passwordService;
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public ResponseDto.response findAll() {
+        return ResponseDto.response.success("success", userRepository.findAll());
     }
 
-    public User create(UserDto userDto) {
+    public ResponseDto.response create(UserDto userDto) {
         if (userRepository.existsByEmail(userDto.getEmail())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exist");
         }
@@ -39,10 +40,10 @@ public class UserService {
                 Instant.now(),
                 Instant.now());
 
-        return userRepository.save(user);
+        return ResponseDto.response.success("success", userRepository.save(user));
     }
 
-    public User update(String id, UserDto userDto) {
+    public ResponseDto.response update(String id, UserDto userDto) {
         User user = findUserById(id);
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
@@ -52,10 +53,10 @@ public class UserService {
         }
         user.setUpdatedAt(Instant.now());
 
-        return userRepository.save(user);
+        return ResponseDto.response.success("success", userRepository.save(user));
     }
 
-    public User updatePatch(String id, UserDto userDto) {
+    public ResponseDto.response updatePatch(String id, UserDto userDto) {
         User user = findUserById(id);
         if (userDto.getName() != null) user.setName(userDto.getName());
         if (userDto.getEmail() != null) user.setEmail(userDto.getEmail());
@@ -65,15 +66,15 @@ public class UserService {
         }
         user.setUpdatedAt(Instant.now());
 
-        return userRepository.save(user);
+        return ResponseDto.response.success("success", userRepository.save(user));
     }
 
-    public boolean softDelete(String id) {
+    public ResponseDto.response softDelete(String id) {
         User user = findUserById(id);
         user.setDeletedAt(Instant.now());
         userRepository.save(user);
 
-        return user.getDeletedAt() != null;
+        return ResponseDto.response.success("success", null);
     }
 
     private User findUserById(String id) {

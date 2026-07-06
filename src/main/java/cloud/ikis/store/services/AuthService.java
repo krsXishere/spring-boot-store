@@ -1,6 +1,7 @@
 package cloud.ikis.store.services;
 
 import cloud.ikis.store.dtos.AuthDto;
+import cloud.ikis.store.dtos.ResponseDto;
 import cloud.ikis.store.entities.User;
 import cloud.ikis.store.repositories.UserRepository;
 import cloud.ikis.store.security.jwt.JwtService;
@@ -28,7 +29,7 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
-    public AuthDto.SignInResponse signIn(AuthDto.SignInRequest signInRequest) {
+    public ResponseDto.response signIn(AuthDto.SignInRequest signInRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         signInRequest.email(),
@@ -38,14 +39,14 @@ public class AuthService {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         assert userDetails != null;
-        return new AuthDto.SignInResponse(jwtService.generateToken(userDetails));
+        return ResponseDto.response.success("success", jwtService.generateToken(userDetails));
     }
 
-    public AuthDto.SignUpResponse signUp(AuthDto.SignUpRequest signUpRequest) {
+    public ResponseDto.response signUp(AuthDto.SignUpRequest signUpRequest) {
         String hashedPassword = passwordService.hash(signUpRequest.password());
         User user = new User(UUID.randomUUID(), signUpRequest.name(), signUpRequest.email(), hashedPassword, Instant.now(), Instant.now());
         userRepository.save(user);
 
-        return new AuthDto.SignUpResponse("Successfully signing up");
+        return ResponseDto.response.success("success", null);
     }
 }

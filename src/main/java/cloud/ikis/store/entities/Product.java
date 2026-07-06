@@ -1,38 +1,42 @@
 package cloud.ikis.store.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.SQLRestriction;
 
+import java.lang.Integer;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "products")
 @SQLRestriction("deleted_at IS NULL")
-public class User {
+public class Product {
     @Id
     private UUID id;
     private String name;
-    private String email;
-    private String password;
+    private String description;
+    private BigDecimal price;
+    private Integer stock;
     private Instant createdAt;
     private Instant updatedAt;
     private Instant deletedAt;
 
-    public User() {
+    public Product() {
     }
 
-    public User(UUID id, String name, String email, String password, Instant createdAt, Instant updatedAt) {
+    public Product(UUID id, String name, String description, BigDecimal price, Integer stock, Instant createdAt, Instant updatedAt, Instant deletedAt) {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.deletedAt = deletedAt;
     }
 
     public UUID getId() {
@@ -51,21 +55,28 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDescription() {
+        return description;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @JsonIgnore
-    public String getPassword() {
-        return password;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Instant getCreatedAt() {
@@ -95,12 +106,12 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(createdAt, user.createdAt) && Objects.equals(updatedAt, user.updatedAt) && Objects.equals(deletedAt, user.deletedAt);
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(price, product.price) && Objects.equals(stock, product.stock) && Objects.equals(createdAt, product.createdAt) && Objects.equals(updatedAt, product.updatedAt) && Objects.equals(deletedAt, product.deletedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, password, createdAt, updatedAt, deletedAt);
+        return Objects.hash(id, name, description, price, stock, createdAt, updatedAt, deletedAt);
     }
 }

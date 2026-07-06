@@ -1,6 +1,7 @@
 package cloud.ikis.store.controllers;
 
 import cloud.ikis.store.dtos.AuthDto;
+import cloud.ikis.store.dtos.ResponseDto;
 import cloud.ikis.store.services.AuthService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +15,12 @@ public class AuthController {
     }
 
     @PostMapping("/sign-in")
-    public AuthDto.SignInResponse signIn(@RequestBody AuthDto.SignInRequest signInRequest) {
+    public ResponseDto.response signIn(@RequestBody AuthDto.SignInRequest signInRequest) {
         return authService.signIn(signInRequest);
     }
 
     @PostMapping("/sign-up")
-    public AuthDto.SignUpResponse signUp(@RequestBody AuthDto.SignUpRequest signUpRequest) {
+    public ResponseDto.response signUp(@RequestBody AuthDto.SignUpRequest signUpRequest) {
         return authService.signUp(signUpRequest);
     }
 }

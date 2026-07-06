@@ -1,16 +1,16 @@
 ###
 GET http://localhost:8080/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMjQ2MTk5LCJleHAiOjE3ODMyNDk3OTl9.znwD0npboouDkYr48EKY2B5iu1FBm2AUO04gpH-X20A
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMzMxOTk5LCJleHAiOjE3ODMzMzU1OTl9.RdkLajzzTxKiY4bea-kzP6tQEphJ813drB8JoJQKn74
 
 ###
 POST http://localhost:8080/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMjQ2MTk5LCJleHAiOjE3ODMyNDk3OTl9.znwD0npboouDkYr48EKY2B5iu1FBm2AUO04gpH-X20A
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpa2lzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgzMzMxOTk5LCJleHAiOjE3ODMzMzU1OTl9.RdkLajzzTxKiY4bea-kzP6tQEphJ813drB8JoJQKn74
 
 {
   "name": "Rizki Triana",
-  "email": "iki@example.com",
+  "email": "ikiss@example.com",
   "password": "secret123"
 }
 
