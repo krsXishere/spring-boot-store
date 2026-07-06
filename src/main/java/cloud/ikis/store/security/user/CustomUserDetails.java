@@ -3,6 +3,7 @@ package cloud.ikis.store.security.user;
 import cloud.ikis.store.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;

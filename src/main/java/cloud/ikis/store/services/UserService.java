@@ -71,6 +71,7 @@ public class UserService {
 
     public ResponseDto.response softDelete(String id) {
         User user = findUserById(id);
+        user.setUpdatedAt(Instant.now());
         user.setDeletedAt(Instant.now());
         userRepository.save(user);
 

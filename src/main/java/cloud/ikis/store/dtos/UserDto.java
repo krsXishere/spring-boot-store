@@ -6,7 +6,6 @@ public class UserDto {
     private String name;
     private String email;
     private String password;
-    private Instant createdAt;
     private Instant updatedAt;
     private Instant deletedAt;
 
@@ -32,10 +31,6 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
     }
 
     public Instant getUpdatedAt() {
