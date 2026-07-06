@@ -43,7 +43,7 @@ public class UserService {
         return ResponseDto.response.success("success", userRepository.save(user));
     }
 
-    public ResponseDto.response update(String id, UserDto userDto) {
+    public ResponseDto.response fullUpdate(String id, UserDto userDto) {
         User user = findUserById(id);
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
@@ -56,7 +56,7 @@ public class UserService {
         return ResponseDto.response.success("success", userRepository.save(user));
     }
 
-    public ResponseDto.response updatePatch(String id, UserDto userDto) {
+    public ResponseDto.response partialUpdate(String id, UserDto userDto) {
         User user = findUserById(id);
         if (userDto.getName() != null) user.setName(userDto.getName());
         if (userDto.getEmail() != null) user.setEmail(userDto.getEmail());

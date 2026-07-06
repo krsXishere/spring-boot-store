@@ -19,27 +19,27 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseDto.response getAllUsers() {
+    public ResponseDto.response findAll() {
         return userService.findAll();
     }
 
     @PostMapping
-    public ResponseDto.response createUser(@RequestBody UserDto userDto) {
+    public ResponseDto.response create(@RequestBody UserDto userDto) {
         return userService.create(userDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseDto.response updateUser(@PathVariable String id, @RequestBody UserDto userDto) {
-        return userService.update(id, userDto);
+    public ResponseDto.response fullUpdate(@PathVariable String id, @RequestBody UserDto userDto) {
+        return userService.fullUpdate(id, userDto);
     }
 
     @PatchMapping("/{id}")
-    public ResponseDto.response updatePatchUser(@PathVariable String id, @RequestBody UserDto userDto) {
-        return userService.updatePatch(id, userDto);
+    public ResponseDto.response partialUpdate(@PathVariable String id, @RequestBody UserDto userDto) {
+        return userService.partialUpdate(id, userDto);
     }
 
     @PatchMapping("delete/{id}")
-    public ResponseDto.response softDeleteUser(@PathVariable String id) {
+    public ResponseDto.response softDelete(@PathVariable String id) {
         return userService.softDelete(id);
     }
 }
