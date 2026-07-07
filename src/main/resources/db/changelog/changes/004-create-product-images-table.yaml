@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-product-images-table
+      author: ikis
+
+      changes:
+        - createTable:
+            tableName: product-images
+
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: product_id
+                  type: uuid
+                  constraints:
+                    foreignKeyName: fk_product_image
+                    references: products(id)
+                    nullable: false
+
+              - column:
+                  name: image
+                  type: text
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: timestamp with time zone
+
+      rollback:
+        - dropTable:
+            tableName: product_images
